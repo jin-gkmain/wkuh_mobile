@@ -128,12 +128,12 @@ export default function PatientInfoRoute() {
 
   const handleConfirm = async () => {
     if (await validateForm()) {
-      router.push("/patient-confirmation");
+      router.push("/mobilechat/patient-confirmation");
     }
   };
 
   const handleBack = () => {
-    router.push("/");
+    router.push("/mobilechat");
   };
 
   return (

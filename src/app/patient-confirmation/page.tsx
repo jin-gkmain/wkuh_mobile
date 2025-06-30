@@ -1,34 +1,34 @@
-'use client';
+"use client";
 
-import { PatientConfirmationPage } from '../../components/pages/PatientConfirmationPage';
-import { useHealthcare } from '../../contexts/HealthcareContext';
-import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
+import { PatientConfirmationPage } from "../../components/pages/PatientConfirmationPage";
+import { useHealthcare } from "../../contexts/HealthcareContext";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 export default function PatientConfirmationRoute() {
   const {
     currentLanguage,
     setCurrentLanguage,
     patientInfo,
-    resetQuestionnaire
+    resetQuestionnaire,
   } = useHealthcare();
-  
+
   const router = useRouter();
 
   // Redirect if no patient info
   useEffect(() => {
     if (!patientInfo.patientNumber) {
-      router.push('/patient-info');
+      router.push("/mobilechat/patient-info");
     }
   }, [patientInfo.patientNumber, router]);
 
   const handleStart = () => {
     resetQuestionnaire();
-    router.push('/questionnaire');
+    router.push("/mobilechat/questionnaire");
   };
 
   const handleBack = () => {
-    router.push('/patient-info');
+    router.push("/mobilechat/patient-info");
   };
 
   if (!patientInfo.patientNumber) {

@@ -30,7 +30,7 @@ export default function QuestionnaireRoute() {
   // Redirect if no patient info
   useEffect(() => {
     if (!patientInfo.name) {
-      router.push("/patient-info");
+      router.push("/mobilechat/patient-info");
     }
   }, [patientInfo.name, router]);
 
@@ -80,7 +80,7 @@ export default function QuestionnaireRoute() {
       }
     } else {
       // Complete questionnaire
-      router.push("/questionnaire-complete");
+      router.push("/mobilechat/questionnaire-complete");
     }
   };
 
@@ -253,7 +253,7 @@ export default function QuestionnaireRoute() {
       const result = await fetchPreliminary(preliminaryRequest);
       console.log("문진표 제출 결과:", result);
 
-      router.push("/questionnaire-complete");
+      router.push("/mobilechat/questionnaire-complete");
     } catch (error) {
       console.error("문진표 제출 오류:", error);
       // TODO: 에러 처리 (에러 메시지 표시 등)
@@ -261,7 +261,7 @@ export default function QuestionnaireRoute() {
   };
 
   const handleBack = () => {
-    router.push("/patient-confirmation");
+    router.push("/mobilechat/patient-confirmation");
   };
 
   if (!patientInfo.name) {

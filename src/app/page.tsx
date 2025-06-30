@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { MainPage } from '../components/pages/MainPage';
-import { useHealthcare } from '../contexts/HealthcareContext';
-import { useRouter } from 'next/navigation';
+import { MainPage } from "../components/pages/MainPage";
+import { useHealthcare } from "../contexts/HealthcareContext";
+import { useRouter } from "next/navigation";
 
 export default function HomePage() {
   const { currentLanguage, setCurrentLanguage } = useHealthcare();
@@ -10,17 +10,17 @@ export default function HomePage() {
 
   const handleNavigate = (page: string) => {
     switch (page) {
-      case 'patient-info':
-        router.push('/patient-info');
+      case "patient-info":
+        router.push("/mobilechat/patient-info");
         break;
-      case 'ai-chat':
-        router.push('/ai-chat');
+      case "ai-chat":
+        router.push("/mobilechat/ai-chat");
         break;
-      case 'emergency-guide':
-        router.push('/emergency-guide');
+      case "emergency-guide":
+        router.push("/mobilechat/emergency-guide");
         break;
       default:
-        router.push('/');
+        router.push("/mobilechat");
     }
   };
 
