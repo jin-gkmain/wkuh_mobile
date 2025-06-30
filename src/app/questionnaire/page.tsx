@@ -198,37 +198,20 @@ export default function QuestionnaireRoute() {
       return String(answer || "");
     };
 
-    // Combine past_history from questions 6 and 7
-    const getCombinedPastHistory = (): string => {
-      const pastHistory6 = getMultipleChoiceObject(6, "past");
-      const pastHistory7 = getMultipleChoiceObject(7, "mental");
-
-      if (!pastHistory6 && !pastHistory7) return "";
-      if (!pastHistory6) return pastHistory7;
-      if (!pastHistory7) return pastHistory6;
-
-      // Merge two JSON objects
-      const obj6 = pastHistory6 ? JSON.parse(pastHistory6) : {};
-      const obj7 = pastHistory7 ? JSON.parse(pastHistory7) : {};
-      const combined = { ...obj6, ...obj7 };
-
-      return JSON.stringify(combined);
-    };
-
     return {
       symptoms: getMultipleChoiceObject(1, "sym"),
       pain_degree: getPainDegree(),
       diagnosis: getTextAnswer(3),
       treatment: getTextAnswer(4),
       specific: getTextAnswer(5),
-      past_history: getCombinedPastHistory(),
+      past_history: getMultipleChoiceObject(6, "past"),
       family_history: getMultipleChoiceObject(7, "family"),
       smoke: getSingleChoiceKey(8, "smoke"),
       drink: getSingleChoiceKey(9, "drink"),
       past_surgeries: getMultipleChoiceObject(10, "surgery"),
       medical_history: getTextAnswer(11),
-      allergy: getMultipleChoiceObject(13, "allergy"),
-      todoc: getTextAnswer(14),
+      allergy: getMultipleChoiceObject(12, "allergy"),
+      todoc: getTextAnswer(13),
     };
   };
 

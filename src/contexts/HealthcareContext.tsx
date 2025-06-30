@@ -298,7 +298,9 @@ export function HealthcareProvider({
   };
 
   const resetAll = () => {
+    const lang = state.currentLanguage;
     setState(initialState);
+    setCurrentLanguage(lang);
   };
 
   const contextValue: HealthcareContextType = {
