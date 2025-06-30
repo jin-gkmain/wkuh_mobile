@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import { EmergencyGuidePage } from '../../components/pages/EmergencyGuidePage';
-import { useHealthcare } from '../../contexts/HealthcareContext';
-import { useRouter } from 'next/navigation';
-import { EmergencyGuide } from '../../types';
+import { EmergencyGuidePage } from "../../components/pages/EmergencyGuidePage";
+import { useHealthcare } from "../../contexts/HealthcareContext";
+import { useRouter } from "next/navigation";
+import { EmergencyGuide } from "../../types";
 
 export default function EmergencyGuideRoute() {
   const {
@@ -11,9 +11,9 @@ export default function EmergencyGuideRoute() {
     setCurrentLanguage,
     emergencyState,
     setSearchTerm,
-    setSelectedGuide
+    setSelectedGuide,
   } = useHealthcare();
-  
+
   const router = useRouter();
 
   const handleSearchChange = (term: string) => {
@@ -25,7 +25,7 @@ export default function EmergencyGuideRoute() {
   };
 
   const handleBack = () => {
-    router.push('/');
+    router.push("/mobilechat");
   };
 
   return (

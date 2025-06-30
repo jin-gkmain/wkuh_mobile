@@ -137,7 +137,7 @@ export default function AIChatRoute() {
   };
 
   const handleBack = () => {
-    router.push("/");
+    router.push("/mobilechat");
   };
 
   return (
