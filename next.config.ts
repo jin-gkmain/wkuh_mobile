@@ -1,7 +1,10 @@
-import type { NextConfig } from "next";
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  // 여기에 assetPrefix를 추가합니다.
+  assetPrefix: "/mobilechat",
 
-const nextConfig: NextConfig = {
-  /* config options here */
+  // 다른 기존 설정들이 있다면 그대로 둡니다.
+  // 예: reactStrictMode: true,
 };
 
-export default nextConfig;
+module.exports = nextConfig;
