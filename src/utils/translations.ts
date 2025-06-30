@@ -66,6 +66,7 @@ export const translations = {
         birthDateRequired: "생년월일을 입력해주세요.",
         birthDateInvalid: "올바른 날짜 형식을 입력해주세요 (YYYY-MM-DD).",
       },
+      errorMessage: "환자 정보를 조회하는 중 오류가 발생했습니다.",
     },
     patientConfirmation: {
       title: "환자 정보 확인",
@@ -277,6 +278,7 @@ export const translations = {
         birthDateRequired: "Please enter date of birth.",
         birthDateInvalid: "Please enter valid date format (YYYY-MM-DD).",
       },
+      errorMessage: "Patient information lookup failed.",
     },
     patientConfirmation: {
       title: "Patient Information",
@@ -498,6 +500,7 @@ export const translations = {
         birthDateRequired: "Төрсөн огноогоо оруулна уу.",
         birthDateInvalid: "Зөв огнооны хэлбэр оруулна уу (ЖЖЖЖ-СС-ӨӨ).",
       },
+      errorMessage: "Өвчтөний мэдээлэл олж авах үед алдаа гарлаа.",
     },
     patientConfirmation: {
       title: "Өвчтөний мэдээлэл",
@@ -712,7 +715,7 @@ export const translations = {
     patientInfo: {
       title: "Науқас ақпараты",
       subtitle: "Сауалнама толтыру үшін\nнауқас ақпаратын енгізіңіз.",
-      patientNumber: "Науқас нөмірі",
+      patientNumber: "Науқас нөірі",
       patientNumberPlaceholder: "Науқас нөміріңізді енгізіңіз",
       birthDate: "Туған күні",
       birthDatePlaceholder: "ЖЖЖЖ-АА-КК",
@@ -722,6 +725,7 @@ export const translations = {
         birthDateRequired: "Туған күніңізді енгізіңіз.",
         birthDateInvalid: "Дұрыс күн форматын енгізіңіз (ЖЖЖЖ-АА-КК).",
       },
+      errorMessage: "Науқас ақпаратын алу үед алдаа гарлаа.",
     },
     patientConfirmation: {
       title: "Науқас ақпараты",
@@ -887,3 +891,26 @@ export const languageOptions = [
   { value: "mn" as Language, label: "Монгол", flag: "🇲🇳" },
   { value: "kz" as Language, label: "Қазақша", flag: "🇰🇿" },
 ];
+
+/**
+ * 브라우저 언어를 감지하여 앱에서 지원하는 언어로 매핑
+ * @returns Language 타입 중 하나 (기본값: "ko")
+ */
+export function detectBrowserLanguage(): Language {
+  // 서버사이드 렌더링에서는 기본값 반환
+  if (typeof window === "undefined") {
+    return "ko";
+  }
+
+  // 브라우저 언어 가져오기
+  const browserLang = navigator.language || navigator.languages?.[0] || "ko";
+
+  // 언어 코드 매핑
+  if (browserLang.startsWith("ko")) return "ko";
+  if (browserLang.startsWith("en")) return "en";
+  if (browserLang.startsWith("mn")) return "mn";
+  if (browserLang.startsWith("kk") || browserLang.startsWith("kz")) return "kz";
+
+  // 기본값
+  return "ko";
+}

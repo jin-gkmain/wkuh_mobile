@@ -29,12 +29,28 @@ export default function AIChatRoute() {
       const systemMessage: ChatMessage = {
         id: "system-welcome",
         type: "system",
-        content: t.aiChat.systemMessage,
+        content: translations[currentLanguage].aiChat.systemMessage,
         timestamp: new Date(),
       };
       setChatMessages([systemMessage]);
     }
-  }, [chatState.messages.length, t.aiChat.systemMessage, setChatMessages]);
+  }, []);
+
+  // Update system message when language changes
+  useEffect(() => {
+    if (chatState.messages.length > 0) {
+      setChatMessages((prevMessages: ChatMessage[]) =>
+        prevMessages.map((msg: ChatMessage) =>
+          msg.id === "system-welcome"
+            ? {
+                ...msg,
+                content: translations[currentLanguage].aiChat.systemMessage,
+              }
+            : msg
+        )
+      );
+    }
+  }, [currentLanguage]);
 
   const handleSendMessage = async () => {
     if (!chatState.currentInput.trim() || chatState.isAITyping) return;

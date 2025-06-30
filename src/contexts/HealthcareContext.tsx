@@ -84,7 +84,7 @@ interface HealthcareActions {
 type HealthcareContextType = HealthcareState & HealthcareActions;
 
 const initialState: HealthcareState = {
-  currentLanguage: "ko",
+  currentLanguage: "ko", // 기본값, useEffect에서 브라우저 언어로 변경됨
   currentQuestionIndex: 0,
 
   patientInput: {
